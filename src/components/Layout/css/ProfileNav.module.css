@@ -1,0 +1,42 @@
+.profile_nav_container {
+  background-color: #25191d87;
+  width: 19vw;
+  height: 24rem;
+  color: rgb(255 255 255);
+  font-size: 1.6rem;
+  margin-left: 2rem;
+  border-radius: 1rem;
+  position: sticky;
+  top: 100px;
+}
+
+.user_profile {
+  display: flex;
+  align-items: center;
+  gap: 2rem;
+  font-size: 2rem;
+}
+
+.profile_nav_header {
+  display: grid;
+  grid-template-rows: 1fr 3fr;
+  row-gap: 2rem;
+  margin: 1rem;
+}
+
+.center {
+  margin: auto;
+}
+
+.avtar {
+  font-size: 3rem;
+}
+
+.sidebar {
+  /* position: fixed; */
+  /* top: 0; */
+  /* left: 0; */
+  /* height: 100vh; */
+  width: 320px;
+  background-color: rgb(109, 48, 48);
+}

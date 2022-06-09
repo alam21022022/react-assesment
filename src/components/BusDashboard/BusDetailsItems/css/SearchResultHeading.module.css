@@ -1,0 +1,11 @@
+.search_result_heading {
+  font-size: 2rem;
+  font-weight: 700;
+  background-color: rgba(0, 0, 0, 0.747);
+  min-height: 30px;
+  width: 98.3%;
+  margin: auto;
+  margin-top: 2rem;
+  text-align: center;
+  color: #ffffff;
+}

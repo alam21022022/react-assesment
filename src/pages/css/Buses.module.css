@@ -1,0 +1,4 @@
+.buses_container {
+  display: grid;
+  grid-template-columns: 1fr 3fr;
+}

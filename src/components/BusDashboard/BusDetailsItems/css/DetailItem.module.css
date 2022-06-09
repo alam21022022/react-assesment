@@ -1,0 +1,13 @@
+.detail_sub_container {
+  width: 100%;
+  display: grid;
+  grid-auto-columns: repeat(5, 1fr);
+  grid-template-columns: repeat(5, 1fr);
+  align-items: center;
+  justify-items: center;
+}
+
+.detail_sub_container div {
+  font-size: 1.5rem;
+  font-weight: 500;
+}
