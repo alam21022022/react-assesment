@@ -1,12 +1,16 @@
 import React, { useContext } from "react";
 import useInput from "../utils/useInput";
-import AuthContext from "../context/auth/authContext";
+import BusContext from "../store/busContext";
 import { NavLink, useNavigate } from "react-router-dom";
 import classes from "./css/Login.module.css";
+import { toast } from "react-toastify";
+import { emailValidator, passwordValidator } from "../utils/utils";
+import { constent } from "../utils/Constents";
 
 const Login = () => {
-  const { user, setUser, loggedIn, setLoggedIn } = useContext(AuthContext);
+  const { user, setUser, loggedIn, setLoggedIn } = useContext(BusContext);
   const navigate = useNavigate();
+
   const {
     value: enteredEmail,
     isVaild: enteredEmailIsValid,
@@ -14,7 +18,7 @@ const Login = () => {
     reset: resetEmailInput,
     valueChangeHandler: eamilChangeHandler,
     inputBlurHandler: emailBlurHandler,
-  } = useInput((value) => value.includes("@"));
+  } = useInput((value) => emailValidator(value));
 
   const {
     value: enteredPassword,
@@ -23,7 +27,7 @@ const Login = () => {
     reset: resetPasswordInput,
     valueChangeHandler: passwordChangeHandler,
     inputBlurHandler: passwordBlurHandler,
-  } = useInput((value) => value.trim() !== "");
+  } = useInput((value) => passwordValidator(value));
 
   let formIsValid = true;
 
@@ -41,8 +45,6 @@ const Login = () => {
 
   const formSubmissionHandler = (e) => {
     e.preventDefault();
-    console.log(enteredEmail, enteredPassword);
-    console.log({ user });
 
     let authUser = user.find((elem) => {
       return elem.email === enteredEmail;
@@ -50,16 +52,20 @@ const Login = () => {
 
     if (authUser) {
       if (enteredPassword === authUser.password) {
-        setLoggedIn([authUser]);
-        localStorage.setItem("loggedIn", JSON.stringify(authUser));
-        alert("Login Success");
+        toast.success("Login Success");
+        setTimeout(() => {
+          setLoggedIn([authUser]);
+          localStorage.setItem("loggedIn", JSON.stringify(authUser));
+          navigate("/search");
+          resetEmailInput();
+          resetPasswordInput();
+        }, 1500);
+      } else {
+        toast.error(`please enter vaild email/password`);
       }
     }
 
-    resetEmailInput();
-    resetPasswordInput();
-
-    navigate("/");
+    !authUser && toast.error(constent.user_not_found);
   };
 
   return (
@@ -84,10 +90,11 @@ const Login = () => {
             onChange={passwordChangeHandler}
             onBlur={passwordBlurHandler}
             value={enteredPassword}
+            placeholder="Enter your Password"
           />
         </div>
         {passwordInputHasError && (
-          <p className="error-text">Enter Valid Email</p>
+          <p className="error-text">Password Contain atleast 6 Charecter </p>
         )}
         <div className="form-actions">
           <button disabled={formIsValid}>Login</button>

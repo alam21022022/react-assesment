@@ -26,10 +26,11 @@ function DetailItem(props) {
           p2={props.destinationStation}
         />
 
-        <div>
-          <p>{props?.price}</p>
+        <div className={classes.detail_info_container}>
+          <p>Rs {"  " + props?.price + "  "} /- </p>
+          <p>{props.seats} Seats Left</p>
           <button onClick={(e) => props.bookSeat(e, props?.id)}>
-            Book Now
+            Seat Info
           </button>
         </div>
       </div>

@@ -16,6 +16,7 @@ function DetailsItems({ details, bookSeat }) {
           destinationStation,
           price,
           id,
+          seats,
         } = bus;
         return (
           <DetailItem
@@ -31,6 +32,7 @@ function DetailsItems({ details, bookSeat }) {
             price={price}
             id={id}
             bookSeat={bookSeat}
+            seats={seats}
           />
         );
       })}

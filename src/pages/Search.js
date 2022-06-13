@@ -2,13 +2,15 @@ import React, { useContext, useState } from "react";
 import SelectDropdown from "../components/UI/Dropdown/SelectDropdown";
 import { station } from "../utils/data";
 import { useNavigate } from "react-router-dom";
-import ProfileNav from "../components/Layout/ProfileNav";
+import ProfileNav from "../components/Layout/LeftNav";
 import SwapArrowIcon from "../assets/icons/SwapArrowIcon";
-import AuthContext from "../context/auth/authContext";
-import classes from "./css/SearchAvailableBuses.module.css";
+import BusContext from "../store/busContext";
+import classes from "./css/Search.module.css";
+import { constent } from "../utils/Constents";
+import { toast } from "react-toastify";
 
 function SearchAvailableBuses() {
-  const { setEnteredLocationDetails } = useContext(AuthContext);
+  const { setEnteredLocationDetails } = useContext(BusContext);
   const [enterdDestinationData, setEnteredDestinationData] = useState({
     pickupStation: "",
     destinationStation: "",
@@ -21,7 +23,10 @@ function SearchAvailableBuses() {
     e.preventDefault();
     const { pickupStation, destinationStation, date } = enterdDestinationData;
     if (!pickupStation || !destinationStation || !date) {
-      return alert("Please Fill Form Correctly");
+      return toast.warn(constent.form_warning_msg);
+    }
+    if (pickupStation === destinationStation) {
+      return toast.warn(constent.match_destination);
     }
     setEnteredLocationDetails(enterdDestinationData);
     navigate("/buses");
@@ -49,7 +54,6 @@ function SearchAvailableBuses() {
     <div className={classes.search_buses}>
       <ProfileNav />
       <div className={classes.search_buses_container}>
-        {/* <h1>Welcome Back {render?.name}</h1> */}
         <div className={classes.search_buses_content}>
           <section className={classes.search_buses_destination}>
             <SelectDropdown

@@ -1,0 +1,23 @@
+.dashboard_container {
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+  background: #000000cf;
+  width: 89vw;
+  margin: auto;
+  border-radius: 0.7rem;
+}
+
+.dashboard_content {
+  width: 67vw;
+  display: flex;
+  border-radius: 0.7rem;
+  padding: 0rem 0rem 8rem 7rem;
+}
+
+.dashboard_content h2 {
+  font-size: 3rem;
+  font-weight: 700;
+  color: #ffffff;
+  text-transform: capitalize;
+}

@@ -1,7 +1,7 @@
 import React from "react";
 
 function SelectDropdownItem({ name }) {
-  return <option>{name}</option>;
+  return <option value={name}>{name}</option>;
 }
 
 export default SelectDropdownItem;

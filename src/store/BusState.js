@@ -1,28 +1,23 @@
-import React, { useEffect, useState } from "react";
-import AuthContext from "./authContext";
+import React, { useEffect, useReducer, useState } from "react";
+import BusContext from "./busContext";
 
 function AuthState(props) {
   const [user, setUser] = useState([]);
   const [loggedIn, setLoggedIn] = useState([]);
   const [enteredLocationDetails, setEnteredLocationDetails] = useState();
   const [busDetails, setBusDetails] = useState();
+  const [modelIsShown, setModelIsShown] = useState(false);
+
   const getUser = JSON.parse(localStorage.getItem("user"));
   const getLoggedInUser = JSON.parse(localStorage.getItem("loggedIn"));
+
   useEffect(() => {
-    if (getUser == null) {
-      setUser([]);
-    } else {
-      setUser(getUser);
-    }
-    if (getLoggedInUser == null) {
-      setLoggedIn(undefined);
-    } else {
-      setLoggedIn(getLoggedInUser);
-    }
+    !getUser ? setUser([]) : setUser(getUser);
+    !getLoggedInUser ? setLoggedIn(undefined) : setLoggedIn(getLoggedInUser);
   }, []);
-  console.log({ enteredLocationDetails });
+
   return (
-    <AuthContext.Provider
+    <BusContext.Provider
       value={{
         user,
         setUser,
@@ -32,9 +27,11 @@ function AuthState(props) {
         setEnteredLocationDetails,
         busDetails,
         setBusDetails,
+        modelIsShown,
+        setModelIsShown,
       }}>
       {props.children}
-    </AuthContext.Provider>
+    </BusContext.Provider>
   );
 }
 

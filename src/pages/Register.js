@@ -1,12 +1,18 @@
 import React, { useContext } from "react";
 import useInput from "../utils/useInput";
 import { v4 as uuidv4 } from "uuid";
-import AuthContext from "../context/auth/authContext";
+import BusContext from "../store/busContext";
 import { useNavigate } from "react-router-dom";
 import classes from "./css/Register.module.css";
+import { toast } from "react-toastify";
+import {
+  emailValidator,
+  nameValidator,
+  passwordValidator,
+} from "../utils/utils";
 
 const Register = () => {
-  const { user, setUser } = useContext(AuthContext);
+  const { user, setUser } = useContext(BusContext);
   const navigate = useNavigate();
   const {
     value: enteredName,
@@ -15,7 +21,7 @@ const Register = () => {
     reset: resetNameInput,
     valueChangeHandler: nameChangeHandler,
     inputBlurHandler: nameBlurHandler,
-  } = useInput((value) => value.trim() !== "");
+  } = useInput((value) => nameValidator(value));
 
   const {
     value: enteredEmail,
@@ -24,7 +30,7 @@ const Register = () => {
     reset: resetEmailInput,
     valueChangeHandler: eamilChangeHandler,
     inputBlurHandler: emailBlurHandler,
-  } = useInput((value) => value.includes("@"));
+  } = useInput((value) => emailValidator(value));
 
   const {
     value: enteredPassword,
@@ -33,7 +39,7 @@ const Register = () => {
     reset: resetPasswordInput,
     valueChangeHandler: passwordChangeHandler,
     inputBlurHandler: passwordBlurHandler,
-  } = useInput((value) => value.trim() !== "");
+  } = useInput((value) => passwordValidator(value));
 
   let formIsValid = true;
 
@@ -55,22 +61,35 @@ const Register = () => {
 
   const formSubmissionHandler = (e) => {
     e.preventDefault();
+
     const id = uuidv4();
     let newUSer = {
       id,
       name: enteredName,
       email: enteredEmail,
       password: enteredPassword,
+      booking: [],
     };
+
+    const checkUser = user.find((user) => {
+      return user.email === enteredEmail;
+    });
+
+    if (checkUser) {
+      return toast.error("User Exist");
+    }
+
     setUser([...user, newUSer]);
-    localStorage.setItem("user", JSON.stringify([...user, newUSer]));
-    resetNameInput();
-    resetEmailInput();
-    resetPasswordInput();
-    alert("Registered Success");
-    navigate("/");
+    toast.success("Registered Success");
+    setTimeout(() => {
+      localStorage.setItem("user", JSON.stringify([...user, newUSer]));
+      resetNameInput();
+      resetEmailInput();
+      resetPasswordInput();
+      navigate("/");
+    }, 1100);
   };
-  //   console.log({ user });
+
   return (
     <form className="form_login" onSubmit={formSubmissionHandler}>
       <div className={nameInputClasses}>
@@ -81,10 +100,12 @@ const Register = () => {
           onChange={nameChangeHandler}
           onBlur={nameBlurHandler}
           value={enteredName}
-          placeholder="Name"
+          placeholder="Enter Your Name"
         />
       </div>
-      {nameInputHasError && <p className="error-text">Enter Valid Name</p>}
+      {nameInputHasError && (
+        <p className="error-text">Password Contain atleast 3 Charecter</p>
+      )}
 
       <div className={emailInputClassName}>
         <input
@@ -93,7 +114,7 @@ const Register = () => {
           onChange={eamilChangeHandler}
           onBlur={emailBlurHandler}
           value={enteredEmail}
-          placeholder="Email"
+          placeholder="Enter Your Email"
         />
       </div>
       {emailInputHasError && <p className="error-text">Enter Valid Email</p>}
@@ -104,10 +125,12 @@ const Register = () => {
           onChange={passwordChangeHandler}
           onBlur={passwordBlurHandler}
           value={enteredPassword}
-          placeholder="Password"
+          placeholder="Enter Your Password"
         />
       </div>
-      {passwordInputHasError && <p className="error-text">Enter Valid Email</p>}
+      {passwordInputHasError && (
+        <p className="error-text">Password Contain atleast 5 Charecter</p>
+      )}
       <div className="form-actions">
         <button disabled={formIsValid}>Register User</button>
       </div>

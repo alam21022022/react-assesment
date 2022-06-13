@@ -1,16 +1,18 @@
 import React from "react";
 import SelectDropdownItem from "./SelectDropdownItem";
 
-function SelectDropdown({ heading, destination, stationHandler }) {
+function SelectDropdown(props) {
+  console.log({ props });
   const selectHandler = (e) => {
-    stationHandler(e.target.value);
+    props.stationHandler(e.target.value);
   };
 
   return (
     <div className="boarding">
-      <h2>{heading}</h2>
+      {props.heading && <h2>{props.heading}</h2>}
       <select onChange={selectHandler}>
-        {destination.map((station) => (
+        <option value="">--Select {props.sub_header}--</option>
+        {props.destination.map((station) => (
           <SelectDropdownItem key={station.id} name={station.name} />
         ))}
       </select>
