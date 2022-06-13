@@ -80,3 +80,11 @@
 .detail_sub_container .h1 {
   align-self: center;
 }
+
+@media only screen and (max-width: 730px) {
+  .detail_sub_container {
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+  }
+}

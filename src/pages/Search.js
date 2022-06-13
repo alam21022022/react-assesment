@@ -69,7 +69,7 @@ function SearchAvailableBuses() {
             />
           </section>
           <section className="date_section">
-            <h2> Depated On</h2>
+            <h2> Departed On</h2>
             <input
               type="date"
               value={enterdDestinationData.date}

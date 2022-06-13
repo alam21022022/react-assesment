@@ -39,13 +39,13 @@ function Booking(props) {
     // Checker
     const { phone, age, gender } = bookingDetails || {};
     if (!phone || !age || !gender) {
-      return toast.error("Please Fill Form Properly");
+      return toast.error(constent.form_warning_msg);
     }
     if (!mobileNumValidator(phone)) {
-      return toast.warn("Please Check Your Phone Number");
+      return toast.warn(constent.phone_war_msg);
     }
     if (!ageValidator(age)) {
-      return toast.warn("Please Check Your Age");
+      return toast.warn(constent.age_war_msg);
     }
 
     // Set Booked Ticket To user Profile

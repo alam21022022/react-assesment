@@ -227,6 +227,31 @@ button:disabled:active {
   outline: none;
 }
 
+@media only screen and (max-width: 1600px) {
+  .date_section input,
+  .boarding select,
+  .departure select {
+    width: 23rem;
+  }
+}
+
+@media only screen and (max-width: 966px) {
+  .form_login {
+    width: 85vw;
+  }
+}
+
+@media only screen and (max-width: 666px) {
+  .date_section input,
+  .boarding select,
+  .departure select {
+    width: 15rem;
+  }
+  .form_login {
+    width: 85vw;
+  }
+}
+
 .select__icon {
   font-size: 3rem;
   align-self: center;
@@ -250,7 +275,7 @@ button:disabled:active {
   margin-bottom: 2rem;
   /* color: #fff; */
   background-color: rgb(79 86 71 / 70%);
-  width: 20rem;
+  width: 14rem;
   color: white;
   padding: 0.3rem 1rem;
   border-radius: 1rem;
@@ -258,7 +283,7 @@ button:disabled:active {
 
 .sidebar__menu__item:hover {
   background-color: #fff;
-  width: 20rem;
+  width: 14rem;
   padding: 0.3rem 1rem;
   border-radius: 1rem;
   color: black;
@@ -266,7 +291,7 @@ button:disabled:active {
 
 .sidebar_active {
   background-color: #fff;
-  width: 20rem;
+  width: 14rem;
   padding: 0.3rem 1rem;
   border-radius: 1rem;
   color: black;

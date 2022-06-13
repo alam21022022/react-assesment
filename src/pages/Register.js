@@ -10,6 +10,7 @@ import {
   nameValidator,
   passwordValidator,
 } from "../utils/utils";
+import { constent } from "../utils/Constents";
 
 const Register = () => {
   const { user, setUser } = useContext(BusContext);
@@ -76,11 +77,11 @@ const Register = () => {
     });
 
     if (checkUser) {
-      return toast.error("User Exist");
+      return toast.error(constent.user_exist);
     }
 
     setUser([...user, newUSer]);
-    toast.success("Registered Success");
+    toast.success(constent.registered_success);
     setTimeout(() => {
       localStorage.setItem("user", JSON.stringify([...user, newUSer]));
       resetNameInput();

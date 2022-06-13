@@ -52,7 +52,7 @@ const Login = () => {
 
     if (authUser) {
       if (enteredPassword === authUser.password) {
-        toast.success("Login Success");
+        toast.success(constent.success_msg);
         setTimeout(() => {
           setLoggedIn([authUser]);
           localStorage.setItem("loggedIn", JSON.stringify(authUser));
@@ -61,7 +61,7 @@ const Login = () => {
           resetPasswordInput();
         }, 1500);
       } else {
-        toast.error(`please enter vaild email/password`);
+        toast.error(constent.error_msg);
       }
     }
 

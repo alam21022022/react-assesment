@@ -3,7 +3,6 @@ import { NavLink, useNavigate } from "react-router-dom";
 import BusContext from "../../store/busContext";
 import logoImage from "../../assets/images/logo.png";
 import classes from "./css/Nav.module.css";
-// import skyLineBusImage from "../assets/images/logod.png";
 
 export default function Nav() {
   const { loggedIn, setLoggedIn } = useContext(BusContext);

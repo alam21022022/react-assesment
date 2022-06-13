@@ -11,11 +11,9 @@ function ProfileNav() {
   // change active index
   useEffect(() => {
     const curPath = window.location.pathname.split("/")[1];
-    console.log({ curPath });
     const activeItem = sidebarNavItems.findIndex(
       (item) => item.section === curPath
     );
-    console.log({ activeItem });
     setActiveIndex(curPath.length === 0 ? 0 : activeItem);
   }, [location]);
 

@@ -11,7 +11,6 @@ import classes from "./css/Reservation.module.css";
 function Reservation() {
   const { busDetails, setBusDetails, setModelIsShown } = useContext(BusContext);
   const [seatsCount, setSeatsCount] = useState(1);
-  console.log({ busDetails });
   const {
     image,
     name,
@@ -32,8 +31,6 @@ function Reservation() {
     seatsCount > 1 && setSeatsCount(seatsCount - 1);
   };
 
-  console.log({ price });
-
   const increaseSeatHandler = () => {
     setSeatsCount(seatsCount + 1);
   };
@@ -48,8 +45,6 @@ function Reservation() {
     });
     setModelIsShown(true);
   };
-
-  console.log({ busDetails });
 
   return (
     <Card>

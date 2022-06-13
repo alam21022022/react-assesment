@@ -2,7 +2,6 @@ import React from "react";
 import SelectDropdownItem from "./SelectDropdownItem";
 
 function SelectDropdown(props) {
-  console.log({ props });
   const selectHandler = (e) => {
     props.stationHandler(e.target.value);
   };

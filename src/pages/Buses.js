@@ -20,7 +20,6 @@ function Buses() {
 
   const bookSeatButtonHandler = (e, id) => {
     e.preventDefault();
-    console.log({ id });
 
     const selectedBus = busData?.filter((bus) => {
       return id === bus?.id;
@@ -29,10 +28,6 @@ function Buses() {
     setBusDetails(selectedBus[0]);
     navigate("/reservation");
   };
-
-  // if (busData[0]?.pickupStation === undefined) {
-  //   navigate("/search");
-  // }
 
   return (
     <>

@@ -3,13 +3,13 @@
   flex-direction: column;
   gap: 2rem;
   background: #000000cf;
-  width: 89vw;
+  width: 90vw;
   margin: auto;
   border-radius: 0.7rem;
 }
 
 .ticket_container {
-  width: 80vw;
+  width: 100%;
   background-color: rgba(0, 0, 0, 0.774);
   min-height: 10rem;
   border-radius: 1rem;
@@ -18,12 +18,12 @@
   gap: 2rem;
   padding-top: 4rem;
   padding-bottom: 4rem;
-  margin-left: 5rem;
+  /* margin-left: 5rem; */
 }
 
 .ticket_list {
   align-self: center;
-  width: 91%;
+  width: 100%;
   min-height: 100px;
   padding: 2rem;
   background-color: #4a4141bd;
@@ -74,4 +74,13 @@
 
 .detail_sub_container .h1 {
   align-self: center;
+}
+
+@media only screen and (max-width: 730px) {
+  .ticket_header {
+    font-size: 1.7rem;
+  }
+  .ticket_main_container {
+    width: 97vw;
+  }
 }

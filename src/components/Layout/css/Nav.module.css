@@ -20,3 +20,27 @@
 .nav_div {
   display: flex;
 }
+
+@media only screen and (max-width: 730px) {
+  .nav {
+    padding: 0 1rem;
+  }
+  .nav__item {
+    font-size: 1.2rem;
+  }
+  .nav__logo {
+    height: 5rem;
+  }
+}
+
+@media only screen and (max-width: 730px) {
+  .nav {
+    padding: 0 1rem;
+  }
+  .nav__item {
+    font-size: 1.2rem;
+  }
+  .nav__logo {
+    height: 5rem;
+  }
+}

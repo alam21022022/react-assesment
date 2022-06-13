@@ -7,7 +7,6 @@ import DetailsItems from "./BusDetailsItems/DetailsItems";
 import { Link } from "react-router-dom";
 
 function BusDetails({ details, bookSeat }) {
-  console.log({ details });
   return (
     <div className={classes.detail_container}>
       <div className={classes.detail_sub_container}>
