@@ -50,6 +50,10 @@ function SearchAvailableBuses() {
     });
   };
 
+  const today = new Date().toISOString().split(".")[0].split("T")[0];
+  console.log({ today });
+  // document.getElementsByName("txtDate")[0].setAttribute("min", today[0]);
+
   return (
     <div className={classes.search_buses}>
       <ProfileNav />
@@ -72,6 +76,7 @@ function SearchAvailableBuses() {
             <h2> Departed On</h2>
             <input
               type="date"
+              min={today}
               value={enterdDestinationData.date}
               onChange={dateChangeHandler}
             />
